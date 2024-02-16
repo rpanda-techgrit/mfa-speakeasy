@@ -1,14 +1,14 @@
 import express, { json } from 'express';
+import cors from 'cors';
 import speakeasy from 'speakeasy';
 import { toDataURL } from 'qrcode';
 import dotenv from 'dotenv';
-const envPath =
-  process.env.NODE_ENV === 'development'
-    ? '.env'
-    : `.env.${process.env.NODE_ENV}`;
+
+const envPath = process.env.NODE_ENV === 'development' ? '.env' : `.env.${process.env.NODE_ENV}`;
 dotenv.config({ path: envPath });
 
 const app = express();
+app.use(cors());
 app.use(json());
 
 // Generate secret and QR code
@@ -16,14 +16,14 @@ app.post('/api/setup', (req, res) => {
   console.info('MFA setup request received');
   const secret = speakeasy.generateSecret({
     length: +process.env.TOKEN_LENGTH,
-    name: process.env.SECRET_NAME,
+    name: process.env.SECRET_NAME
   });
 
-  toDataURL(secret.otpauth_url, (err, data_url) => {
+  toDataURL(secret.otpauth_url, (err, dataUrl) => {
     if (err) {
       res.status(500).json({ message: 'Error generating QR code' });
     } else {
-      res.json({ secret: secret.base32, qr_code: data_url });
+      res.json({ secret: secret.base32, qr_code: dataUrl });
     }
   });
 });
@@ -35,7 +35,7 @@ app.post('/api/verify', (req, res) => {
   const verified = speakeasy.totp.verify({
     secret,
     encoding: 'base32',
-    token,
+    token
   });
   res.json({ verified });
 });

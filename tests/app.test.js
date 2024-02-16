@@ -1,6 +1,6 @@
 import request from 'supertest';
 import speakeasy from 'speakeasy';
-import app from '../src/app';
+import app from '../src/app.js';
 
 describe('Express App Endpoints', () => {
   it('should generate secret and QR code', async () => {
@@ -13,12 +13,12 @@ describe('Express App Endpoints', () => {
   it('should verify token', async () => {
     const secret = 'FYSWO6DLGI2F4PTBPBIFWTSEFFKTI6KL';
     const token = speakeasy.totp({
-      secret: secret,
-      encoding: 'base32',
+      secret,
+      encoding: 'base32'
     });
     const verifyResponse = await request(app).post('/api/verify').send({
-      secret: secret,
-      token: token,
+      secret,
+      token
     });
 
     expect(verifyResponse.statusCode).toBe(200);
@@ -30,8 +30,8 @@ describe('Express App Endpoints', () => {
     const secret = 'FYSWO6DLGI2F4PTBPBIFWTSEFFKTI6KL';
 
     const verifyResponse = await request(app).post('/api/verify').send({
-      secret: secret,
-      token: 123456,
+      secret,
+      token: 123456
     });
 
     expect(verifyResponse.statusCode).toBe(200);
