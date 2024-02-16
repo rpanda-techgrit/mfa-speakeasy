@@ -6,7 +6,7 @@ const envPath =
   process.env.NODE_ENV === 'development'
     ? '.env'
     : `.env.${process.env.NODE_ENV}`;
-dotenv.config({ path: `.env${envPath}` });
+dotenv.config({ path: envPath });
 
 const app = express();
 app.use(json());

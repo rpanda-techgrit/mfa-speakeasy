@@ -17,7 +17,7 @@
 Setup:
 
 ```curl
-curl --location --request POST 'localhost:3000/api/setup'
+> curl --location --request POST 'localhost:3000/api/setup'
 ```
 
 Note: The response needs to be converted from base64 to image to render the QR code.
@@ -25,12 +25,12 @@ Note: The response needs to be converted from base64 to image to render the QR c
 Verify:
 
 ```curl
-curl --location 'localhost:3000/api/verify' \
---header 'Content-Type: application/json' \
---data '{
-    "secret": "FYSWO6DLGI2F4PTBPBIFWTSEFFKTI6KL",
-    "token": "628453"
-}'
+> curl --location 'localhost:3000/api/verify' \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "secret": "FYSWO6DLGI2F4PTBPBIFWTSEFFKTI6KL",
+            "token": "628453"
+        }'
 ```
 
 ## Docker
@@ -38,7 +38,7 @@ curl --location 'localhost:3000/api/verify' \
 ### Build
 
 ```bash
-docker build --build-arg NODE_ENV=<ENV_NAME> -t mfa-speakeasy:<ENV_NAME> .
+> docker build --build-arg NODE_ENV=<ENV_NAME> -t mfa-speakeasy:<ENV_NAME> .
 ```
 
 For eg. `docker build --build-arg NODE_ENV=production -t mfa-speakeasy:production .`
@@ -46,7 +46,7 @@ For eg. `docker build --build-arg NODE_ENV=production -t mfa-speakeasy:productio
 ### Run
 
 ```bash
-docker run -d -p 3000:3000 mfa-speakeasy:<ENV_NAME>
+> docker run -d -p 3000:3000 mfa-speakeasy:<ENV_NAME>
 ```
 
 For eg. `docker run -d -p 3000:3000 mfa-speakeasy:production`
