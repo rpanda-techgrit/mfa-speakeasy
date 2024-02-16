@@ -32,3 +32,21 @@ curl --location 'localhost:3000/api/verify' \
     "token": "628453"
 }'
 ```
+
+## Docker
+
+### Build
+
+```bash
+docker build --build-arg NODE_ENV=<ENV_NAME> -t mfa-speakeasy:<ENV_NAME> .
+```
+
+For eg. `docker build --build-arg NODE_ENV=production -t mfa-speakeasy:production .`
+
+### Run
+
+```bash
+docker run -d -p 3000:3000 mfa-speakeasy:<ENV_NAME>
+```
+
+For eg. `docker run -d -p 3000:3000 mfa-speakeasy:production`
