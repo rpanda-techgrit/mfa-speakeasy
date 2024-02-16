@@ -4,3 +4,8 @@ readme.md
 Dockerfile
 .dockerignore
 tests
+.eslintrc
+.lintstagedrc
+.prettierrc
+.husky
+.git
