@@ -1,4 +1,4 @@
-name: MFA Docker Image
+name: Docker Build
 
 on:
   push:
