@@ -1,5 +1,5 @@
 # MFA-Speakeasy setup
-[![Docker Build](https://github.com/rpanda-techgrit/mfa-speakeasy/actions/workflows/docker-image.yml/badge.svg)](https://github.com/rpanda-techgrit/mfa-speakeasy/actions/workflows/docker-image.yml)
+[![Docker Build](https://github.com/rpanda-techgrit/mfa-speakeasy/actions/workflows/docker-image.yml/badge.svg)](https://github.com/rpanda-techgrit/mfa-speakeasy/actions/workflows/docker-image.yml) [![Jest](https://github.com/rpanda-techgrit/mfa-speakeasy/actions/workflows/jest.yml/badge.svg)](https://github.com/rpanda-techgrit/mfa-speakeasy/actions/workflows/jest.yml)
 ### Install
 
 ```bash
