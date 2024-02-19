@@ -8,7 +8,7 @@
     "start": "node src/server.js",
     "start:prod": "node --env-file .env.production src/server.js",
     "test": "jest --silent",
-    "lint": "eslint src/**/*.js tests/**/*.test.js --fix",
+    "lint": "eslint src/**/*.js tests/**/*.spec.js --fix",
     "push": "npm version patch && git push",
     "push-minor": "npm version minor && git push",
     "push-major": "npm version major && git push"
