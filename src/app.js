@@ -19,13 +19,29 @@ app.post('/api/setup', (req, res) => {
     name: process.env.SECRET_NAME
   });
 
-  toDataURL(secret.otpauth_url, (err, dataUrl) => {
+  toDataURL(secret.otpauth_url, (err, qrCode) => {
     if (err) {
       res.status(500).json({ message: 'Error generating QR code' });
     } else {
-      res.json({ secret: secret.base32, qrCode: dataUrl });
+      res.json({ secret: secret.base32, qrCode });
     }
   });
+});
+
+// Generate Recovery Codes
+app.post('/api/recovery-codes', (req, res) => {
+  console.info('Recovery request received');
+  const recoveryCodes = [];
+  const characters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+  for (let i = 0; i < +process.env.RCVRYCODES_LENGTH; i++) {
+    let code = '';
+    for (let j = 0; j < 6; j++) {
+      code += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    recoveryCodes.push(code);
+  }
+  res.json({ recoveryCodes });
 });
 
 // Verify token

@@ -83,4 +83,13 @@ describe('Express App Endpoints', () => {
     expect(verifyResponse.body).toHaveProperty('verified');
     expect(verifyResponse.body.verified).toBe(false);
   }, 200000);
+
+  it('should generate 10 random string arrays of recovery codes', async () => {
+    process.env.RCVRYCODES_LENGTH = 10;
+
+    const response = await request(app).post('/api/recovery-codes').send();
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('recoveryCodes');
+    expect(response.body.recoveryCodes).toHaveLength(+process.env.RCVRYCODES_LENGTH);
+  });
 });
